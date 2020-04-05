@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<endpoints>
+  <endpoint name="Achilles.Titan.Questionnaire.Host">
+    <handles>
+      <command type="Achilles.Titan.Questionnaire.Contracts.UpdateQuestionnaireStatusesCommand, Achilles.Titan.Questionnaire.Contracts"/>
+      <command type="Achilles.Titan.Questionnaire.Contracts.UpdateEventStatusesCommand, Achilles.Titan.Questionnaire.Contracts"/>
+    </handles>
+  </endpoint>
+</endpoints>
