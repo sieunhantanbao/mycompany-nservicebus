@@ -11,7 +11,7 @@ namespace MyCompany.NServiceBus.Common
             var att = type.GetCustomAttributes(typeof(TAtribute), true).FirstOrDefault() as TAtribute;
             if(att!= null)
             {
-                valueSelector(att);
+                return valueSelector(att);
             }
             return default(TValue);
         }

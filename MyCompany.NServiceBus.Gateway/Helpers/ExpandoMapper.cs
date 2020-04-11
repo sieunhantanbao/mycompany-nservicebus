@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Dynamic;
 using System.Linq;
 using System.Reflection;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace NServiceBus.Gateway.Helpers
@@ -50,7 +51,7 @@ namespace NServiceBus.Gateway.Helpers
                             throw new ArgumentException("not nullable");
                         }
                     }
-                    else if (kv.GetType() != propertyType)
+                    else if (kv.Value.GetType() != propertyType)
                     {
                         throw new ArgumentException("type mismatch");
                     }
@@ -69,19 +70,26 @@ namespace NServiceBus.Gateway.Helpers
 
             foreach (var prop in type.GetProperties())
             {
-                var key = dict.Keys.FirstOrDefault(k => k.ToLower() == prop.Name.ToLower());
+                var lower = prop.Name.ToLower();
+                var key = dict.Keys.FirstOrDefault(k => k.ToLower() == lower);
                 if (key != null)
                 {
-                    var objectValue = dict[key];
-                    if (objectValue != null && prop.PropertyType != typeof(List<string>)
-                        && objectValue.GetType() == typeof(List<object>))
+                    JsonElement objectValue = (JsonElement)dict[key];
+                    var objectValueKind = objectValue.ValueKind;
+                    var propType = prop.PropertyType;
+                    if((propType == typeof(List<string>) || propType == typeof(string[]))
+                        && objectValueKind == JsonValueKind.Array)
                     {
-                        var values = ((List<object>)objectValue).Select(s => s.ToString()).ToList();
-                        prop.SetValue(dest, values, null);
+                        var rawText = objectValue.GetRawText(); // the value look like ["value1","value2"]
+                        // Remove the [ and ]
+                        var valueString = rawText?.Substring(rawText.IndexOf('[') + 1, rawText.Length - 2);
+                        var valueStringToArray = valueString.Split(",");
+                        var testArray = valueString.Split(",");
+                        prop.SetValue(dest, valueStringToArray, null);
                     }
                     else
                     {
-                        prop.SetValue(dest, objectValue, null);
+                        prop.SetValue(dest, dict[key], null);
                     }
                 }
             }

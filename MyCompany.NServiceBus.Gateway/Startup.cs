@@ -12,8 +12,7 @@ namespace NServiceBus.Gateway
 {
     public class Startup
     {
-        //[Import]
-        //public IModuleInitilizer OperationInitialier { get; set; }
+        private IEndpointInstance _endpointInstance = null;
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -34,7 +33,7 @@ namespace NServiceBus.Gateway
             RegisterServices(services);
             // RegisterMediatorR(services);
 
-            services.UseNServiceBus(Configuration);
+            _endpointInstance = services.UseNServiceBus(Configuration);
 
             // Add Swagger
             services.AddSwaggerGen(c =>

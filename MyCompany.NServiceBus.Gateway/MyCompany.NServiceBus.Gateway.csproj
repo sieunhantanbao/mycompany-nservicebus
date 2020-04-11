@@ -25,5 +25,14 @@
     <ProjectReference Include="..\MyCompany.NServiceBus.Core\MyCompany.NServiceBus.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Contracts\MyCompany.NServiceBus.Sample.Contracts.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="endpoints.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 
 </Project>

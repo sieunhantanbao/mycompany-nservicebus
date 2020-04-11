@@ -5,9 +5,19 @@ VisualStudioVersion = 16.0.29613.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyCompany.NServiceBus.Gateway", "MyCompany.NServiceBus.Gateway\MyCompany.NServiceBus.Gateway.csproj", "{6B08CC97-52EF-482B-B62C-FDE756850ACA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyCompany.NServiceBus.Common", "MyCompany.NServiceBus.Common\MyCompany.NServiceBus.Common.csproj", "{586E05DC-A825-497B-BA16-EF0A96860E67}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyCompany.NServiceBus.Common", "MyCompany.NServiceBus.Common\MyCompany.NServiceBus.Common.csproj", "{586E05DC-A825-497B-BA16-EF0A96860E67}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyCompany.NServiceBus.Core1", "MyCompany.NServiceBus.Core\MyCompany.NServiceBus.Core.csproj", "{57E463FC-4CFC-4E1A-A6E2-A56B77D76DAE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyCompany.NServiceBus.Core", "MyCompany.NServiceBus.Core\MyCompany.NServiceBus.Core.csproj", "{57E463FC-4CFC-4E1A-A6E2-A56B77D76DAE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NServicesBus", "NServicesBus", "{8B56F9D2-08D7-4E25-95D0-803BF3A72F06}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ContractsHandlers", "ContractsHandlers", "{4BC9BC61-DF04-442A-BF27-E80DC07265EE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyCompany.NServiceBus.Sample.Host", "ContractsHandlers\MyCompany.NServiceBus.Sample.Host\MyCompany.NServiceBus.Sample.Host.csproj", "{557E5359-B4D1-4084-8A3B-A2D70FA29D07}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyCompany.NServiceBus.Sample.Contracts", "ContractsHandlers\MyCompany.NServiceBus.Sample.Contracts\MyCompany.NServiceBus.Sample.Contracts.csproj", "{1DEBCE0A-C79E-4EBC-83BF-17B07FB8EBB5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyCompany.NServiceBus.Sample.Handlers", "ContractsHandlers\MyCompany.NServiceBus.Sample.Handlers\MyCompany.NServiceBus.Sample.Handlers.csproj", "{6A627C32-44ED-435F-A8A7-EABDEDB6B7A5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,9 +37,28 @@ Global
 		{57E463FC-4CFC-4E1A-A6E2-A56B77D76DAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{57E463FC-4CFC-4E1A-A6E2-A56B77D76DAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{57E463FC-4CFC-4E1A-A6E2-A56B77D76DAE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{557E5359-B4D1-4084-8A3B-A2D70FA29D07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{557E5359-B4D1-4084-8A3B-A2D70FA29D07}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{557E5359-B4D1-4084-8A3B-A2D70FA29D07}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{557E5359-B4D1-4084-8A3B-A2D70FA29D07}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1DEBCE0A-C79E-4EBC-83BF-17B07FB8EBB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1DEBCE0A-C79E-4EBC-83BF-17B07FB8EBB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1DEBCE0A-C79E-4EBC-83BF-17B07FB8EBB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1DEBCE0A-C79E-4EBC-83BF-17B07FB8EBB5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A627C32-44ED-435F-A8A7-EABDEDB6B7A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A627C32-44ED-435F-A8A7-EABDEDB6B7A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A627C32-44ED-435F-A8A7-EABDEDB6B7A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A627C32-44ED-435F-A8A7-EABDEDB6B7A5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{586E05DC-A825-497B-BA16-EF0A96860E67} = {8B56F9D2-08D7-4E25-95D0-803BF3A72F06}
+		{57E463FC-4CFC-4E1A-A6E2-A56B77D76DAE} = {8B56F9D2-08D7-4E25-95D0-803BF3A72F06}
+		{557E5359-B4D1-4084-8A3B-A2D70FA29D07} = {4BC9BC61-DF04-442A-BF27-E80DC07265EE}
+		{1DEBCE0A-C79E-4EBC-83BF-17B07FB8EBB5} = {4BC9BC61-DF04-442A-BF27-E80DC07265EE}
+		{6A627C32-44ED-435F-A8A7-EABDEDB6B7A5} = {4BC9BC61-DF04-442A-BF27-E80DC07265EE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {059BBE3A-E42C-4CD8-8839-0E6B1AC28E69}

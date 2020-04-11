@@ -1,9 +1,8 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <endpoints>
-  <endpoint name="Achilles.Titan.Questionnaire.Host">
+  <endpoint name="MyCompany.NServiceBus.Sample.Host">
     <handles>
-      <command type="Achilles.Titan.Questionnaire.Contracts.UpdateQuestionnaireStatusesCommand, Achilles.Titan.Questionnaire.Contracts"/>
-      <command type="Achilles.Titan.Questionnaire.Contracts.UpdateEventStatusesCommand, Achilles.Titan.Questionnaire.Contracts"/>
+      <command type="MyCompany.NServiceBus.Sample.Contracts.UpdateContractCommand, MyCompany.NServiceBus.Sample.Contracts"/>
     </handles>
   </endpoint>
 </endpoints>

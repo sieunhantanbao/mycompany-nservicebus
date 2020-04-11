@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using NServiceBus;
 using NServiceBus.Gateway.Helpers;
 using NServiceBus.Gateway.Models;
@@ -16,11 +17,6 @@ namespace NServiceBus.Gateway.Controllers
     [Route("[controller]")]
     public class GatewayController : ControllerBase
     {
-        private static readonly string[] Summaries = new[]
-        {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
-
         private readonly ILogger<GatewayController> _logger;
         private readonly IRegisterService _registerService;
         private readonly IEndpointInstance _endpointInstance;
@@ -56,7 +52,9 @@ namespace NServiceBus.Gateway.Controllers
                 var type = _registerService.FindContract(value.Command);
                 var obj = Activator.CreateInstance(type, Guid.NewGuid());
 
-                // Convert object to expandoObject
+                var test = JsonConvert.SerializeObject(value.Payload);
+
+                //Map PayLoad to Object
                 value.Payload.To(obj);
 
                 // Send to bus

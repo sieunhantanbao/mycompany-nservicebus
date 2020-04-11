@@ -11,7 +11,7 @@ namespace MyCompany.NServiceBus.Core
         void IDefaultEndpointConfiguration.ConfigureEndpoint(EndpointConfiguration endpointConfiguration)
         {
             endpointConfiguration.SendFailedMessagesTo("error");
-            endpointConfiguration.AuditProcessedMessagesTo("aduit");
+            endpointConfiguration.AuditProcessedMessagesTo("audit");
             endpointConfiguration.EnableInstallers();
             endpointConfiguration.EnableOutbox();
         }
