@@ -1,0 +1,24 @@
+FROM mcr.microsoft.com/dotnet/core/aspnet:3.1 AS base
+
+WORKDIR /app
+EXPOSE 80
+EXPOSE 443
+
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS build
+
+WORKDIR /src
+
+COPY src/Services/MyCompany.NServiceBus/ Services/MyCompany.NServiceBus/
+
+WORKDIR /src/Services/MyCompany.NServiceBus/MyCompany.NServiceBus.Gateway
+RUN dotnet build MyCompany.NServiceBus.Gateway.csproj -c Release -o /app
+
+FROM build AS publish
+RUN dotnet publish MyCompany.NServiceBus.Gateway.csproj -c Release -o /app
+
+FROM base AS final
+WORKDIR /app
+COPY --from=publish /app .
+
+ENTRYPOINT ["dotnet", "MyCompany.NServiceBus.Gateway.dll"]
+
