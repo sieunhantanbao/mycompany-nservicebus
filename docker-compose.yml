@@ -1,0 +1,36 @@
+version: '3.3'
+
+services: 
+    mycompany.scheduler:
+        image: sieunhantanbao/nservicebus/scheduler
+        ports: 
+            - 7000:80
+        restart: always
+        volumes: 
+            - D:/Practice/NServiceBus/NServiceBus/settings/appsettings.scheduler.json:/app/appsettings.json
+        build: 
+            context: .
+            dockerfile: ./dockerfiles/SchedulerDockerfile
+        command: bash -c "dotnet /app/MyCompany.Scheduler.dll"
+    mycompany.handler:
+        image: sieunhantanbao/nservicebus/handler:latest
+        ports:
+            - 7001:80 
+        restart: unless-stopped
+        volumes: 
+            - D:/Practice/NServiceBus/NServiceBus/settings/appsettings.handler.json:/app/appsettings.json
+        build: 
+            context: .
+            dockerfile: ./dockerfiles/SampleDockerfile
+        command: bash -c "dotnet /app/MyCompany.NServiceBus.Sample.Host.dll"
+    mycompany.gateway:
+        image: sieunhantanbao/nservicebus/gateway:latest
+        ports: 
+            - 7002:80
+        restart: unless-stopped
+        volumes: 
+            - D:/Practice/NServiceBus/NServiceBus/settings/appsettings.gateway.json:/app/appsettings.json
+        build: 
+            context: .
+            dockerfile: ./dockerfiles/GatewayDockerfile
+        command: bash -c "chmod -R 777 /app/Contracts/ && dotnet /app/MyCompany.NServiceBus.Gateway.dll"
